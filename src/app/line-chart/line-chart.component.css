@@ -1,0 +1,6 @@
+ul#avgLabel {
+    list-style: none;
+    font-size: smaller;
+    position: relative;
+    left: 1%;
+}

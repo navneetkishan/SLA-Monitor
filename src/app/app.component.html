@@ -1,0 +1,63 @@
+<div id="options">
+  <div id="metrics">
+      <div class="content nav-desktop">
+        <div class="container">
+          <div class="info-card-wrapper col-12 no-gutters">
+              <div class="info-card-ctnr">
+                <app-line-chart [selectedDept]="selectedDept"></app-line-chart>
+              </div>
+          </div>  
+        </div>
+      </div>    
+      <div>
+        <div ngClass="status-warning">
+          <div ngClass="metricsPrevDay">
+            <p id="dailymetrics">Daily Metrics (<span id="currDate">{{currDateMT}}</span>)</p>
+            <ul style="padding-left: 0px;">
+              <li class="succeeded">Total Open Tickets: {{totalOpenTicketCount}}</li>
+              <li class="failed">Total In progress Tickets(Today): {{todayOpenTicketCount}}</li>
+              <li class="running">Total Unassigned Tickets(Today): {{todayUnassignedTicketCount}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>    
+  </div>
+  <div class="topContainer">
+    <ul class="legend">
+      <li><select (change)="onDeptChange($event)" id="groupSelect">
+        <option *ngFor="let dept of departments" [value]="dept" id="deptToggle">{{dept}}</option>
+      </select>
+      </li>
+      <li id="nonprogresstickets_li"><span class="nonprogresstickets"></span>Ticket not touched for 3+ days</li>
+      <li id="progressedtickets_li"><span class="progressedtickets"></span>No update in work notes for 3+ days</li>
+      <br>
+      <div id="breach_legend">
+        <li id="breach_li">% Lost:</li>
+        <li id="green_breach_li"><span class="green_breach_li"></span>0% - 79%</li>
+        <li id="amber_breach_li"><span class="amber_breach_li"></span>80% - 99%</li>
+        <li id="red_breach_li"><span class="red_breach_li"></span>100% + (Breached)</li>
+        <!-- <li id="paused_li"><span class="paused_li"></span>SLA Paused</li> -->
+      </div>
+    </ul>  
+    <label id="exportBtn">
+        <button (click)="onBtnExport()">Export to Excel</button>
+    </label>
+  </div>
+</div>
+<div style="height: calc(100% - 180px);">
+  <ag-grid-angular
+      style="width: 100%; height: 100%;"
+      class="ag-theme-balham"
+      id="grid"
+      [rowData]="rowData"    
+      [defaultColDef]="defaultColDef"
+      [columnDefs]="columnDefs"
+      [rowClassRules]="rowClassRules"
+      rowSelection="multiple"
+      (gridReady)="onGridReady($event)"
+      (firstDataRendered)="onFirstDataRendered($event)"
+      [isExternalFilterPresent]="isExternalFilterPresent"
+      [doesExternalFilterPass]="doesExternalFilterPass"
+      >
+  </ag-grid-angular>
+</div>

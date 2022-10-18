@@ -1,0 +1,20 @@
+<ngx-charts-line-chart
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="single"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [showRefLines]="showRefLines"
+    >
+</ngx-charts-line-chart>
+<div>
+    <ul id="avgLabel">
+        <li>Weekly Opened Average: <b>{{openAvg}}</b></li>
+        <li>Weekly Closure Average: <b>{{closedAvg}}</b></li>
+    </ul>
+</div>
